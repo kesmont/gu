@@ -1,3 +1,7 @@
+function frame(){
+
+//-------------
+
 let list_site = ['web.whatsapp.com/', 'mail.ru/'];
 
 let i=0; while(i!=list_site.length){
@@ -10,6 +14,11 @@ let i=0; while(i!=list_site.length){
 	}
 
 i++;}
+
+//--------
+
+}
+
 
 
 
