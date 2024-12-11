@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Helvetica', Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .login-container {
+            text-align: center;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 70%; /* Оставить первоначальную ширину на 70% */
+            max-width: 320px; /* Максимальная ширина 320px */
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #fff;
+        }
+
+        .avatar-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .login-container input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: block;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #000000; /* Черный цвет для кнопки */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-container button:hover {
+            background-color: #333333; /* Темнее оттенок черного при наведении */
+        }
+		
+		.footer-note {
+            margin-top: 5px;
+            font-size: 12px;
+            color: gray;
+        }
+		
+		a {
+            color: gray; /* Добавленный стиль для ссылок */
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #666; /* Цвет ссылки при наведении */
+        }
+		
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="avatar-title">KATRINE</div> <!-- Добавлена надпись "Simplex" -->
+        <div class="avatar">👻</div>
+        <form>
+            <input type="text" placeholder="Логин" required>
+            <input type="password" placeholder="Пароль" required>
+            <button type="submit">Вход</button>
+        </form>
+		<br>
+		 <div class="footer-note">Сервис хранения данных для БД.</div>
+		 <div class="footer-note">2024 год <a href="https://google.com">@kesmont</a></div>
+		 
+    </div>
+</body>
+</html>
