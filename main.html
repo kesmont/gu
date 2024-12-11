@@ -353,11 +353,13 @@
 </head>
 <body>
     <div class="header">
-        <div class="left">Отделы</div>
+        <div class="left">KATHRINE</div>
         <div class="right">
-            <input type="text" placeholder="Поиск...">
+            
+			<button class="add-user-btn" onclick="showModal('addUserModal')">Добавить пользователя</button>
             <button onclick="showModal('importModal')">Импорт</button>
             <button onclick="showModal('exportModal')">Экспорт</button>
+			<input type="text" placeholder="Поиск...">
         </div>
     </div>
 	
@@ -367,7 +369,7 @@
             <option value="1">Отдел продаж</option>
             <option value="2">Отдел логистики</option>
         </select>
-        <button class="add-user-btn" onclick="showModal('addUserModal')">Добавить пользователя</button>
+        
 	</div>
 
     <div class="content">
@@ -399,7 +401,39 @@
             <a href="#">&raquo;</a>
         </div>
     </div>
-	
+	<!-- Import Modal -->
+    <div id="importModal" class="modal" onclick="closeOnOutsideClick(event, 'importModal')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-button" onclick="hideModal('importModal')">&times;</button>
+            <h3>Импорт данных</h3>
+            <p style="color: gray; font-size: 12px;">Загрузка текстового файла .csv, .xlsx</p>
+        <input type="file" accept=".csv, .xlsx">
+		<p style="color: gray; font-size: 12px;">Отдел</p>
+        <select>
+            <option value="">Выберите отдел</option>
+            <option value="opt1">Опция 1</option>
+            <option value="opt2">Опция 2</option>
+        </select>
+        <button onclick="hideModal('importModal')">Сохранить</button>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div id="exportModal" class="modal" onclick="closeOnOutsideClick(event, 'exportModal')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="close-button" onclick="hideModal('exportModal')">&times;</button>
+            <h3>Экспорт данных</h3>
+            <p style="color: gray; font-size: 12px;">Экспорт в zip</p>
+        <input type="file" accept=".zip">
+		<p style="color: gray; font-size: 12px;">Отдел</p>
+        <select>
+            <option value="">Выберите отдел</option>
+            <option value="opt1">Опция 1</option>
+            <option value="opt2">Опция 2</option>
+        </select>
+        <button onclick="hideModal('exportModal')">Сохранить</button>
+        </div>
+    </div>
     <!-- Modal for Adding User -->
     <div id="addUserModal" class="modal" onclick="closeOnOutsideClick(event, 'addUserModal')">
         <div class="modal-content" onclick="event.stopPropagation()">
