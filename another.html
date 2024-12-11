@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фото с переименованием</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        #camera {
+            display: none;
+            width: 100%;
+            max-width: 480px;
+            margin: 20px auto;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 15px;
+            width: 80%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #photo-container {
+            margin-top: 20px;
+            display: none;
+        }
+        #photo {
+            max-width: 100%;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .container {
+            padding: 10px;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 20px;
+            }
+            button {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            input[type="text"] {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Сделайте фотографию</h1>
+        
+        <!-- Кнопка для запуска камеры -->
+        <button id="start-camera">Открыть камеру</button>
+
+        <!-- Видео для камеры -->
+        <video id="camera" autoplay></video>
+
+        <!-- Кнопка для съемки -->
+        <button id="take-photo" style="display: none;">Сделать фото</button>
+
+        <div id="photo-container">
+            <h2>Фото</h2>
+            <img id="photo" src="" alt="Ваше фото">
+            <br>
+            <label for="photo-name">Новое название:</label>
+            <input type="text" id="photo-name" placeholder="Введите новое имя">
+            <br>
+            <button id="save-photo">Сохранить фото</button>
+        </div>
+    </div>
+
+    <script>
+        // Доступ к элементам
+        const startCameraButton = document.getElementById('start-camera');
+        const takePhotoButton = document.getElementById('take-photo');
+        const cameraElement = document.getElementById('camera');
+        const photoContainer = document.getElementById('photo-container');
+        const photoElement = document.getElementById('photo');
+        const photoNameInput = document.getElementById('photo-name');
+        const savePhotoButton = document.getElementById('save-photo');
+        let stream;
+
+        // Открытие камеры
+        startCameraButton.addEventListener('click', async () => {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                cameraElement.srcObject = stream;
+                cameraElement.style.display = 'block';
+                takePhotoButton.style.display = 'inline-block';
+                startCameraButton.style.display = 'none';
+            } catch (err) {
+                alert('Ошибка при доступе к камере: ' + err.message);
+            }
+        });
+
+        // Съемка фото
+        takePhotoButton.addEventListener('click', () => {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = cameraElement.videoWidth;
+            canvas.height = cameraElement.videoHeight;
+            context.drawImage(cameraElement, 0, 0, canvas.width, canvas.height);
+
+            const dataURL = canvas.toDataURL('image/png');
+            photoElement.src = dataURL;
+
+            photoContainer.style.display = 'block';
+        });
+
+        // Сохранение фото
+        savePhotoButton.addEventListener('click', () => {
+            const photoName = photoNameInput.value.trim() || 'photo';
+            const link = document.createElement('a');
+            link.href = photoElement.src;
+            link.download = `${photoName}.png`;
+            link.click();
+        });
+    </script>
+
+</body>
+</html>
